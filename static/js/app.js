@@ -11,6 +11,59 @@ console.log("I have belly-button");
 //<div id="bubble"></div> */
 
 
+
+function FillMetaData(sampleID)
+    {
+        console.log(`FillMetaData(${sampleID})`) ;
+
+        d3.json("data/samples.json").then((data) =>
+
+        {
+
+        var metadata = data.metadata ;
+
+        function selectSampleMeta(ID)
+            {
+                return ID.id == sampleID ;
+            }
+
+        var sampleMeta = metadata.filter(selectSampleMeta) ;
+        
+
+        console.log(sampleMeta) ;
+
+        var meta = d3.select(".panel-body") ;
+        meta.text(sampleMeta[0]).property("value", sampleMeta[0]) ;
+
+
+    
+        });
+    } ;
+
+function DrawBarGraph(sampleID)
+    {
+        console.log(`DrawBarGraph(${sampleID})`) ;
+    } ;
+
+function DrawBubbleChart(sampleID)
+    {
+        console.log(`DrawBubbleChart(${sampleID})`) ;
+    } ;
+
+function optionChanged(newSampleID)
+    {
+        console.log(`User selected ${newSampleID}`) ;
+
+        FillMetaData(newSampleID) ;
+
+        DrawBarGraph(newSampleID) ;
+
+        DrawBubbleChart(newSampleID) ;
+
+    } ;
+
+
+
 function InitDash() 
     {
 
@@ -19,9 +72,9 @@ function InitDash()
         //Filling Selector
 
         var selector = d3.select("#selDataset") ;
-        var meta = d3.select("#sample-metadata") ;
-        var bar = d3.select("#bar") ;
-        var bubble = d3.select("#bubble") ;
+        // var meta = d3.select("#sample-metadata") ;
+        // var bar = d3.select("#bar") ;
+        // var bubble = d3.select("#bubble") ;
 
         d3.json("data/samples.json").then((data) => 
 
@@ -49,7 +102,7 @@ function InitDash()
                 console.log("Starting Sample: ", sampleID) ;
 
                 FillMetaData(sampleID) ;
-                var metaData = data.metadata ;
+               
 
                 DrawBarGraph(sampleID) ;
             
