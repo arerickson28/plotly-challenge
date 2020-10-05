@@ -44,7 +44,7 @@ function FillMetaData(sampleID)
 
 
         }) ;
-        
+
     } ;
 
 
@@ -102,7 +102,7 @@ function DrawBarGraph(sampleID)
     } ;
 
 
-//Functio to draw bubble chart
+//Function to draw bubble chart
 function DrawBubbleChart(sampleID)
 
     {
